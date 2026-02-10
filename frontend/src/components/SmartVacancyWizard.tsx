@@ -146,6 +146,27 @@ const SmartVacancyWizard: React.FC<SmartVacancyWizardProps> = ({
     description: initialData?.description || '',
   });
 
+
+  useEffect(() => {
+    console.log(' SmartVacancyWizard mounted');
+    console.log(' Пропсы:', { onComplete, initialData });
+    console.log(' initialData:', initialData);
+    
+    // Проверяем, нет ли редиректа при маунте
+    const checkRedirect = () => {
+      // Если есть условие, которое может вызвать редирект
+      if (initialData && initialData.redirect) {
+        console.log(' Обнаружено условие для редиректа');
+      }
+    };
+    
+    checkRedirect();
+    
+    return () => {
+      console.log('🗑️ SmartVacancyWizard unmounted');
+    };
+  }, [initialData, onComplete]);
+
   // Поиск пресетов с задержкой (debounce)
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -208,29 +229,51 @@ const SmartVacancyWizard: React.FC<SmartVacancyWizardProps> = ({
   };
 
   const handleSubmit = async () => {
-    if (!validateStep(activeStep)) return;
+    console.log(' handleSubmit вызван, activeStep:', activeStep);
+  
+    if (!validateStep(activeStep)) {
+      console.log(' Валидация не прошла');
+      return;
+    }
 
     setIsSubmitting(true);
+    console.log(' isSubmitting установлен в true');
 
     try {
+      console.log(' Отправка запроса на /api/vacancies/');
+      console.log(' Данные формы:', JSON.stringify(formData, null, 2));
+      
       const response = await fetch('/api/vacancies/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
+      console.log(' Ответ сервера:', {
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok
+      });
+
       if (!response.ok) {
-        throw new Error('Failed to create vacancy');
+        const errorText = await response.text();
+        console.error(' Ошибка сервера:', errorText);
+        throw new Error(`Failed to create vacancy: ${response.status} ${response.statusText}`);
       }
 
       const vacancy = await response.json();
+      console.log(' Вакансия создана успешно:', vacancy);
 
       if (onComplete) {
+        console.log(' Вызов onComplete callback');
         onComplete(vacancy);
       } else {
+        console.log(' Навигация на /recruiter/vacancies');
         navigate('/recruiter/vacancies');
+        // window.location.href = '/recruiter/vacancies';
       }
     } catch (err) {
+      console.error(' Ошибка в handleSubmit:', err);
       setError(err instanceof Error ? err.message : 'Failed to create vacancy');
       setIsSubmitting(false);
     }

@@ -23,6 +23,7 @@ import RecruiterDashboardPage from '@pages/RecruiterDashboard';
  * Использует компонент Layout для обеспечения последовательной навигации и структуры.
  */
 function App() {
+
   return (
     <BrowserRouter>
       <Routes>
@@ -53,6 +54,7 @@ function App() {
               <Route path="create" element={<CreateVacancyPage />} />
               <Route path=":id" element={<VacancyDetailsPage />} />
             </Route>
+            <Route path="compare/:resumeId/:vacancyId" element={<ComparePage />} />
             <Route path="resumes" element={<ResumeDatabasePage />} />
             <Route path="search" element={<CandidateSearchPage />} />
             <Route path="analytics" element={<AnalyticsDashboardPage />} />

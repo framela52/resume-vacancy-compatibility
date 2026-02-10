@@ -170,7 +170,15 @@ const VacancyList: React.FC = () => {
           variant="contained"
           size="large"
           startIcon={<AddIcon />}
-          onClick={() => navigate('/vacancies/create')}
+          onClick={() => {
+            console.log(' Кнопка "Создать запрос" нажата');
+            console.log(' Текущий URL:', window.location.href);
+            console.log(' Текущий путь:', window.location.pathname);
+            console.log(' Переход на /recruiter/vacancies/create');
+            navigate('/recruiter/vacancies/create');
+            
+          }}
+    
         >
           {t('vacancyList.createRequest')}
         </Button>
@@ -196,7 +204,13 @@ const VacancyList: React.FC = () => {
           <Button
             variant="contained"
             startIcon={<AddIcon />}
-            onClick={() => navigate('/vacancies/create')}
+            onClick={() => {
+              console.log(' Кнопка "Создать запрос" нажата');
+              console.log(' Текущий URL:', window.location.href);
+              console.log(' Текущий путь:', window.location.pathname);
+              console.log(' Переход на /recruiter/vacancies/create');
+              navigate('/recruiter/vacancies/create');
+            }}
           >
             {t('vacancyList.createRequest')}
           </Button>

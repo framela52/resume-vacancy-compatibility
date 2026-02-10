@@ -132,7 +132,7 @@ const VacancyDetails: React.FC = () => {
 
   const handleResumeSelect = (resumeId: string) => {
     handleMatchDialogClose();
-    navigate(`/compare/${resumeId}/${id}`);
+    navigate(`/recruiter/compare/${resumeId}/${id}`);
   };
 
   const filteredResumes = resumes.filter((resume) =>
@@ -343,7 +343,7 @@ const VacancyDetails: React.FC = () => {
               {filteredResumes.map((resume) => (
                 <ListItem
                   key={resume.id}
-                  button
+                  component="button"
                   onClick={() => handleResumeSelect(resume.id)}
                   sx={{
                     borderRadius: 1,

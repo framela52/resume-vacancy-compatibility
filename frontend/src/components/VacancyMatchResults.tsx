@@ -139,7 +139,7 @@ const VacancyMatchResults: React.FC<VacancyMatchResultsProps> = ({ resumeId }) =
         <Button
           variant="contained"
           color="primary"
-          href="/vacancies/create"
+          onClick={() => window.location.href = '/recruiter/vacancies/create'}
         >
           Создать вакансию
         </Button>

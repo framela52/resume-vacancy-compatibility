@@ -133,7 +133,7 @@ const VacancyWizard: React.FC<VacancyWizardProps> = ({ onComplete, initialData }
       if (onComplete) {
         onComplete(vacancy);
       } else {
-        navigate('/vacancies');
+        navigate('/recruiter/vacancies');
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create vacancy');
@@ -420,7 +420,7 @@ const VacancyWizard: React.FC<VacancyWizardProps> = ({ onComplete, initialData }
       <Paper elevation={3} sx={{ p: 4 }}>
         {/* Header */}
         <Box sx={{ mb: 4, display: 'flex', alignItems: 'center', gap: 2 }}>
-          <IconButton onClick={() => navigate('/vacancies')}>
+          <IconButton onClick={() => navigate('/recruiter/vacancies')}>
             <ArrowBackIcon />
           </IconButton>
           <Typography variant="h4" component="h1" fontWeight={600}>
