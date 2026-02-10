@@ -19,7 +19,7 @@ Choose your operating system:
 ### macOS / Linux
 
 ```bash
-git clone https://github.com/soinexx/resume-matching.git
+git clone https://github.com/framela52/resume-vacancy-compatibility.git
 cd resume-matching
 bash setup.sh
 ```
@@ -27,7 +27,7 @@ bash setup.sh
 ### Windows (PowerShell)
 
 ```powershell
-git clone https://github.com/soinexx/resume-matching.git
+git clone https://github.com/framela52/resume-vacancy-compatibility.git
 cd resume-matching
 .\setup.ps1
 ```
